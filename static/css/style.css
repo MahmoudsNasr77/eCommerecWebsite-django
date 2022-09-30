@@ -1,0 +1,52 @@
+body{
+    padding: 0;
+}
+.arrival{
+    background-image: url('../images/arrival-bg.png');
+    height: 500px;
+    background-repeat: no-repeat;
+    background-position: top top;
+    background-size: cover;
+ 
+}
+.arrivaltext h3{
+    font-size: 40px;
+    margin-left: -80px;
+    
+}
+
+.arrivaltext button,.fliter button{
+    border: none;
+    width: 170px;
+    text-align: center;
+}
+.arrivaltext{
+    margin-top: 130px;
+}
+
+.card-img-top{
+    transition: 0.5s;
+}
+.card-img-top:active{
+    transform: scale(1.05,1.05);
+}
+.viewmorebutton{
+    border: none;
+    width: 170px;
+    padding: 7px;
+    margin-top: 5px;
+    text-align: center;
+}
+.about{
+    background: url('../images/pexels-alex-azabache-4039921.jpg') no-repeat fixed;
+    background-size: cover;
+    height:300px;
+}
+.about h3{
+    padding-top: 50px;
+}
+@media only screen and (max-width: 600px) {
+    .arrival {
+      display: none;
+    }
+  }

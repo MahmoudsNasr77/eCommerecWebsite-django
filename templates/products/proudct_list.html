@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{%load static%}
+
+
+{%block body%}
+
+<div class="container">
+
+<div class="container-fluid">
+  <nav aria-label="breadcrumb navbar">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'products:home' %} ">Home</a></li>
+      <li class="breadcrumb-item"><a href="{%url 'products:productslist' %}">Proudcts</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{%block name%}{%endblock%}</li>
+    </ol>
+  </nav>
+</div>
+
+<div class="col-lg-6">
+  <h4>Category</h4>
+  <ul class="list-group">
+    <li class="list-group-item "><a href="{%url 'products:productslist' %}">All</a></li>
+    <li class="list-group-item "><a href="{%url 'products:techon' %}">Techology</a></li>
+    <li class="list-group-item"><a href="{%url 'products:furniture' %}">Furniture</a></li>
+    <li class="list-group-item"><a href="{%url 'products:clothes' %}">Clothes</a></li>
+</div>
+<div class="col-lg-6">
+  <aside class="fliter">
+    <div class="form_inner white-bg">
+      <h3>Filter</h3>
+      <form method=get>
+          {% load bootstrap4 %}
+          {% bootstrap_form myfilter.form %}
+          <input type='submit' value='search' class='boxed-btn3 btn-success w-100 mt-3'>
+      </form>
+    </div>
+  </aside>
+</div>
+</div>
+<div class="container">
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {%if products%}
+    {%for proudct in products%}
+      <div class="col-lg-4">
+        <div class="card">
+          <img src="{{proudct.photo.url}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title font-monospace font-weight-bold">{{proudct.name}}</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <h5 class="card-title font-monospace float-right font-weight-bold ">{{proudct.price}} LE</h5>
+            <button class="btn btn-success"><a class="text-light" href="{% url 'products:BuyProudct' proudct.slug %}">Buy Now</a></button>
+            
+          </div>
+        </div>
+      </div>
+      {%endfor%}
+      {% else %}
+      <h5>No Proudct Avaliable</h5>
+      {%endif%}
+  </div>
+</div>
+</div>
+
+
+<div class="container ">
+  <nav class="text-center">
+    {% if products.has_other_pages%}
+    <ul class="pagination">
+      {% if products.has_previous %}
+      <li class="page-item ">
+        <a class="page-link" href="?page={{products.previous_page_number}}" >Previous</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link">Previous</a>
+      </li>
+      {% endif %}
+
+      {% for i in products.paginator.page_range %}
+      {% if products.number == i %}
+      <li class="page-item active">
+        <a class="page-link" >{{i}}</a>
+      </li>
+      {% else %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{i}}">{{i}}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+
+      {% if products.has_next %}
+      <li class="page-item ">
+        <a class="page-link" href="?page={{products.next_page_number}}" >Next</a>
+      </li>
+      {%else%}
+      <li class="page-item disabled">
+        <a class="page-link">Next</a>
+      </li>
+      {%endif%}
+      
+    </ul>
+    {%endif%}
+  </nav>
+</div>
+
+
+
+{%endblock%}

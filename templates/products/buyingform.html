@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{%block body%}
+
+<div class="container">
+    <div class="row">
+    <div class="col-lg-6">
+        
+        <div class="alert alert-success" role="alert">
+             <h5 class=" text-dark font-weight-bold"><span class="h5 text-muted">Product Name : </span>{{Singel_product.name}}</h4>
+            <h5 class=" text-dark font-weight-bold"><span class="h5 text-muted">Product Category : </span>{{Singel_product.category_type}}</h4>
+             <h5 class=" text-dark font-weight-bold"><span class="h5 text-muted">Saller Name : </span>{{Singel_product.saller.name}}</h4>
+             <h5 class=" text-dark font-weight-bold"><span class="h5 text-muted">Saller Phone : </span>{{Singel_product.saller.phone}}</h4>
+            <h5 class=" text-dark font-weight-bold"><span class="h5 text-muted">Saller Email : </span>{{Singel_product.saller.email}}</h4>
+            <h5 class=" text-dark font-weight-bold"><span class="h5 text-muted">Product Price : </span>{{Singel_product.price}} LE</h4>
+          </div>
+       
+    </div>
+    <div class="col-lg-6">
+        <div class=" white-bg">
+            
+                {% load bootstrap4 %}                
+                <form method="post" enctype="multipart/form-data">
+                 {% csrf_token %}
+                {% bootstrap_form form %}
+                 {% buttons %}
+                <button type="submit" class=" w-100 btn-success">Buy Now</button>
+                {% endbuttons %}
+              </form>
+        </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

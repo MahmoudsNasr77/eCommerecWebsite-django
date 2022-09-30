@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block body %}
+<div class="container-fluid p-0 m-0 ">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+  
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="{% static 'images/furntuire.jpg' %}" alt="Chania">
+        <div class="carousel-caption">
+          <h3>New Collecation & New Items</h3>
+          <p></p>
+        </div>
+      </div>
+  
+      <div class="item">
+        <img src="{% static 'images/clothes.jpg' %}" alt="Chicago">
+        <div class="carousel-caption">
+          <h3>Winter/Spring Collecation </h3>
+          <p>40% off</p>
+        </div>
+      </div>
+  
+      <div class="item">
+        <img src="{% static 'images/Electronic.jpg' %}" alt="New York">
+        <div class="carousel-caption">
+          <h3>Tecnlogoy Items For You</h3>
+          <p>We love Apple!</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      
+    </a>
+  </div>
+</div>
+<div class="container-fluid p-0 ">
+  <div class="card-group">
+    <div class="card">
+      <a class ="text-dark text-decoration-none"href="{%url 'products:techon' %}"><h3 class=text-center><i class="fas fa-laptop"></i><span> Technology</span></h3></a>
+      
+    </div>
+    <div class="card">
+      <a class ="text-dark text-decoration-none"href="{%url 'products:furniture' %}">
+        <h3 class=text-center><i class="fas fa-couch"></i><span> Furniture</span></h3></a>
+      
+    </div>
+    <div class="card">
+      <a class ="text-dark text-decoration-none"href="{%url 'products:clothes' %}">
+        <h3 class=text-center><i class="fas fa-tshirt"></i><span> Clothes</span></h3></a>
+      
+    </div>
+  </div>
+</div>
+<div class="container-fluid text-light arrival h-500 " >
+   
+  <div class="col-lg-6 float-right m-6 arrivaltext">
+    <h3 class="text-center text-dark h1">#New Arrival</h3>
+    <p class="text-capitalize text-body">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      <br> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+      <button class="btn-danger p-3  "><a class="text-light text-decoration-none" href="{%url 'products:productslist' %}">Show More</a></button>
+  </div>     
+  </div>
+</div>
+<div class="container mt-3">
+  <h3>Our Proudcts</h3>
+<div class="row row-cols-1 row-cols-md-2 g-4 mb-2">
+    {%if products%}
+    {%for proudct in products%}
+      <div class="col-lg-4">
+        <div class="card">
+          <img src="{{proudct.photo.url}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title font-monospace font-weight-bold">{{proudct.name}}</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <h5 class="card-title font-monospace float-right font-weight-bold ">{{proudct.price}} LE</h5>
+            <button class="btn btn-success"><a class="text-light" href="{% url 'products:BuyProudct' proudct.slug %}">Buy Now</a></button>
+            
+          </div>
+        </div>
+      </div>
+      
+      {%endfor%}
+      <button class="mx-auto btn-danger viewmorebutton"><a class="text-light" href="{%url 'products:productslist' %}">Show More</a></button>
+      {% else %}
+      <h5>No Proudct Avaliable</h5>
+      {%endif%}
+  </div>
+</div>
+
+
+
+{%endblock%}
+        
