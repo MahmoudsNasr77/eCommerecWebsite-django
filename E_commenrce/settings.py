@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     "bootstrap4",
     'django_filters',
     'products',
-    'accounts'
 ]
 LOGOUT_REDIRECT_URL = 'login'
 MIDDLEWARE = [
